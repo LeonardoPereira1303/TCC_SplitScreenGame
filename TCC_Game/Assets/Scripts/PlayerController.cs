@@ -1,17 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-    private Vector2 playerVelocity;
+    private Vector3 playerVelocity;
     private bool groundedPlayer;
+
     [SerializeField] private float playerSpeed = 2.0f;
+    [SerializeField] private float jumpHeight = 1.0f;
+    [SerializeField] private float gravityValue = -9.81f;
+
+    private Vector2 movementInput = Vector2.zero;
+    private bool jumped = false;    
 
     private void Start()
     {
-        controller = gameObject.AddComponent<CharacterController>();
+        controller = gameObject.GetComponent<CharacterController>();
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        movementInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        jumped = context.action.triggered;
     }
 
     void Update()
@@ -22,14 +40,21 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        Vector2 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-        if (move != Vector2.zero)
+        //Rotate the face of player
+        //if (move != Vector2.zero)
+        //{
+        //    gameObject.transform.forward = move;
+        //}
+
+        if (Input.GetButtonDown("Jump") && groundedPlayer)
         {
-            gameObject.transform.forward = move;
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
         }
 
+        playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
 }
