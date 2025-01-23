@@ -5879,7 +5879,7 @@ MonoBehaviour:
   volumeSlider: {fileID: 2113252910}
   defaultVolume: 1
   confirmationPrompt: {fileID: 1225482432}
-  newGameLevel: Gameplay
+  newGameLevel: Lobby
   noSavedGame: {fileID: 477969699}
   resolutionDropdown: {fileID: 2057151882}
   qualityDropdown: {fileID: 1401958493}
