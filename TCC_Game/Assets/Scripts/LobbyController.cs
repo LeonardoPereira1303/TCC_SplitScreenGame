@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class LobbyController : MonoBehaviour
 {
     [Header("UI Elements")]
     public TMP_Text lobbyStatusText;
     public Button startGameButton;
+    public string sceneGameLoad;
 
     [Header("Lobby Settings")]
     public int maxPlayers = 4;
@@ -60,8 +63,7 @@ public class LobbyController : MonoBehaviour
             Debug.Log("Player " + player.playerIndex);
         }
 
-        // Here, load your game scene or initialize game logic.
-        Debug.Log("Game started!");
+        SceneManager.LoadScene(sceneGameLoad);
     }
 
     void UpdateLobbyStatus()
