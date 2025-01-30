@@ -10,27 +10,24 @@ using UnityEngine.SceneManagement;
 public class LobbyController : MonoBehaviour
 {
     [Header("UI Elements")]
-    public TMP_Text lobbyStatusText;
+    public Transform playerListPanel; // Painel para exibir os jogadores
+    public GameObject playerInfoPrefab; // Prefab para as informações do jogador
     public Button startGameButton;
-    public string sceneGameLoad;
+    public TMP_Text playerCountText;
 
     [Header("Lobby Settings")]
     public int maxPlayers = 4;
+    public string gameSceneName; // Nome da cena do jogo
 
     private List<PlayerInput> players = new List<PlayerInput>();
 
     void Start()
     {
-        // Initialize UI
-        UpdateLobbyStatus();
-
-        // Disable start button initially
         startGameButton.interactable = false;
         startGameButton.onClick.AddListener(StartGame);
-
-        // Subscribe to player joining events
         PlayerInputManager.instance.onPlayerJoined += OnPlayerJoined;
         PlayerInputManager.instance.onPlayerLeft += OnPlayerLeft;
+        UpdateLobbyUI();
     }
 
     void OnPlayerJoined(PlayerInput playerInput)
@@ -38,40 +35,51 @@ public class LobbyController : MonoBehaviour
         if (players.Count < maxPlayers)
         {
             players.Add(playerInput);
-            Debug.Log(playerInput.playerIndex + " joined the lobby.");
-            UpdateLobbyStatus();
+            AddPlayerToUI(playerInput);
         }
         else
         {
-            Debug.Log("Lobby is full. Player " + playerInput.playerIndex + " cannot join.");
             Destroy(playerInput.gameObject);
         }
+        UpdateLobbyUI();
     }
 
     void OnPlayerLeft(PlayerInput playerInput)
     {
         players.Remove(playerInput);
-        Debug.Log(playerInput.playerIndex + " left the lobby.");
-        UpdateLobbyStatus();
+        RemovePlayerFromUI(playerInput);
+        UpdateLobbyUI();
     }
 
     void StartGame()
     {
-        Debug.Log("Game is starting with players:");
-        foreach (var player in players)
-        {
-            Debug.Log("Player " + player.playerIndex);
-        }
-
-        SceneManager.LoadScene(sceneGameLoad);
+        SceneManager.LoadScene(gameSceneName);
     }
 
-    void UpdateLobbyStatus()
+    void AddPlayerToUI(PlayerInput playerInput)
     {
-        lobbyStatusText.text = "Players in Lobby: " + players.Count + "/" + maxPlayers;
+        GameObject playerInfo = Instantiate(playerInfoPrefab, playerListPanel);
+        Text playerNameText = playerInfo.transform.Find("PlayerNameText").GetComponent<Text>();
+        Image playerIcon = playerInfo.transform.Find("PlayerIcon").GetComponent<Image>();
 
-        // Enable or disable start button based on player count
-        startGameButton.interactable = players.Count > 1;
+        playerNameText.text = "Player " + (playerInput.playerIndex + 1);
+        playerIcon.color = Random.ColorHSV();
+        playerInfo.name = "PlayerInfo_" + playerInput.playerIndex;
+    }
+
+    void RemovePlayerFromUI(PlayerInput playerInput)
+    {
+        Transform playerInfo = playerListPanel.Find("PlayerInfo_" + playerInput.playerIndex);
+        if (playerInfo != null)
+        {
+            Destroy(playerInfo.gameObject);
+        }
+    }
+
+    void UpdateLobbyUI()
+    {
+        playerCountText.text = "Players: " + players.Count + "/" + maxPlayers;
+        startGameButton.interactable = players.Count >= 2;
     }
 
     void OnDestroy()
