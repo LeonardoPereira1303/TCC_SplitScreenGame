@@ -143,4 +143,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 7665078730537183240, guid: ffaf5b43d2e83f44aad5aaaa2ed3ae9f, type: 3}
   smoothSpeed: 0.125
-  offset: {x: 0, y: 4.7, z: -23}
+  offset: {x: 0, y: 2.25, z: -1.5}
