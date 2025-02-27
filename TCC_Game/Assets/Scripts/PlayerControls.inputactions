@@ -16,18 +16,18 @@
                 },
                 {
                     "name": "GetItem",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "7c4f9465-4676-43d6-bedd-404563dca3f8",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
                     "name": "Dash",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "5608cf93-0cc3-4425-9a9d-7dec92bb7502",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
