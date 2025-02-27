@@ -11,11 +11,8 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
 
     [SerializeField] private float playerSpeed = 2.0f;
-    [SerializeField] private float jumpHeight = 1.0f;
-    [SerializeField] private float gravityValue = -9.81f;
-
+    private Vector2 dash = Vector2.zero;
     private Vector2 movementInput = Vector2.zero;
-    private bool jumped = false;    
 
     private void Start()
     {
@@ -27,9 +24,9 @@ public class PlayerController : MonoBehaviour
         movementInput = context.ReadValue<Vector2>();
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnDash(InputAction.CallbackContext context)
     {
-        jumped = context.action.triggered;
+        dash = context.ReadValue<Vector2>();
     }
 
     void Update()
@@ -49,12 +46,5 @@ public class PlayerController : MonoBehaviour
         //    gameObject.transform.forward = move;
         //}
 
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-        }
-
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
     }
 }
