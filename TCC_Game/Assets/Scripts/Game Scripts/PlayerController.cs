@@ -7,32 +7,53 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+
     private CharacterController controller;
+
+    private Vector2 movementInput = Vector2.zero;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
     [SerializeField] private float playerSpeed = 2.0f;
-   
-    private Vector2 movementInput = Vector2.zero;
+    [SerializeField] private float dashSpeed = 10.0f;
+    [SerializeField] private float dashDuration = 0.2f;
+    private bool isDashing = false;
 
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
     }
 
-    /*void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }*/
+
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
     }
 
-    /*public void OnDash(InputAction.CallbackContext context)
+    public void OnDash(InputAction.CallbackContext context)
     {
-        dashInput = context.action.triggered;
-    }*/
+        if (context.started && !isDashing)
+        {
+            StartCoroutine(Dash());                 
+        }
+    }
+
+
+    private IEnumerator Dash()
+    {
+        isDashing = true;
+
+        float startTime = Time.time;
+        Vector3 dashDirection = new Vector3(movementInput.x, 0, movementInput.y).normalized;
+
+        while (Time.time < startTime + dashDuration)
+        {
+            controller.Move(dashDirection * dashSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        isDashing = false;
+    }
 
     void Update()
     {
@@ -42,14 +63,13 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        //Evita que se movimente e use dash ao mesmo tempo
+        if (!isDashing)
+        {
+            Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
+            controller.Move(move * playerSpeed * Time.deltaTime);
+        }
 
-        /*if(dashInput && canDash){
-            Dash();
-        }*/
     }
 
-
-    
 }

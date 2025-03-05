@@ -15,15 +15,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GetItem",
-                    "type": "Button",
-                    "id": "7c4f9465-4676-43d6-bedd-404563dca3f8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Dash",
                     "type": "Button",
                     "id": "5608cf93-0cc3-4425-9a9d-7dec92bb7502",
@@ -33,19 +24,28 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "GetItem",
+                    "type": "Button",
+                    "id": "7c4f9465-4676-43d6-bedd-404563dca3f8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "DropItem",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "4fbc1a1a-3f87-4431-b506-8abec98a3709",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
                     "name": "UseItem",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "10a3240f-79a2-430a-a90f-76ca16ff3d7b",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -142,28 +142,6 @@
                 },
                 {
                     "name": "",
-                    "id": "9d033d14-dc5e-4246-a8e2-997f25e24d3f",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "409fcefa-74ae-4b7f-b46a-d032043a9884",
-                    "path": "<DualShockGamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "e9b41125-b18a-4b58-adfe-9defb4a023e5",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -203,6 +181,28 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "UseItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d033d14-dc5e-4246-a8e2-997f25e24d3f",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "409fcefa-74ae-4b7f-b46a-d032043a9884",
+                    "path": "<DualShockGamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
