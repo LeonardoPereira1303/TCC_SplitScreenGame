@@ -1,23 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SplitScreenDynamic : MonoBehaviour
 {
-    /*Variáveis Necessárias:
-     * Transform player1, player2 (Se necessário, adaptar para o Input System)
-     * float splitDistance (Distância necessária para ativar a Split Screen)
-     * Color splitColor (Definir a cor da split screen)
-     * float splitWidht (Define a espessura da split screen)
-     * GameObject camera1, camera2 (Referênciar e inicializar as camêras)
-     * GameObject split, splitter (Inicializar a segunda tela)
-     */
+
+    [Header("Players Properties")]
+    public Transform player1, player2;
+    //public PlayerInput player1_Input, player2_Input;
+
+    [Header("SplitScreen Properties")]
+    public float splitDistance = 5f;
+    public Color splitColor;
+    public float splitWidth;
+
+    [Header("Cameras Properties")]
+    private GameObject cam1, cam2;
+    private GameObject split, splitter;
 
     void Start()
     {
-        //Referência camera1 e incializa camera2
-        //Define profundidade com depth (ajuda com a renderização)
+        /*cam1 está sendo referenciada na main camera, cam2 é gerada como um novo GameObject é pega o
+        componente Camera*/
+        cam1 = Camera.main.gameObject;
+        Camera c1 = cam1.GetComponent<Camera>();
+        cam2 = new GameObject("SplitScreen_Cam");
+        Camera c2 = cam2.GetComponent<Camera>();
+
+        /*c2 é dado como preferência para ser renderizado antes do c1*/
+        c2.depth = c1.depth -1;
+
         //Inicializar a splitscreen e passando seus devidos parâmetros
+
+
+
+
 
         //Criar material para a criação da split screen
     }

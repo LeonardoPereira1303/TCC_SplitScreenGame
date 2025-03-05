@@ -39,12 +39,5 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
         controller.Move(move * Time.deltaTime * playerSpeed);
-
-        //Rotate the face of player
-        //if (move != Vector2.zero)
-        //{
-        //    gameObject.transform.forward = move;
-        //}
-
     }
 }
