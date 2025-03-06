@@ -21,18 +21,18 @@ public class SplitScreenDynamic : MonoBehaviour
 
     void Start()
     {
-        /*cam1 está sendo referenciada na main camera, cam2 é gerada como um novo GameObject é pega o
+        /*cam1 estï¿½ sendo referenciada na main camera, cam2 ï¿½ gerada como um novo GameObject ï¿½ pega o
         componente Camera*/
         cam1 = Camera.main.gameObject;
         Camera c1 = cam1.GetComponent<Camera>();
         cam2 = new GameObject("SplitScreen_Cam");
         Camera c2 = cam2.GetComponent<Camera>();
 
-        /*c2 é dado como preferência para ser renderizado antes do c1*/
+        /*c2 ï¿½ dado como preferï¿½ncia para ser renderizado antes do c1*/
         c2.depth = c1.depth -1;
 
-        /*splitter é criado para ser a splitscreen visual. LocalPosition define o eixo que será gerado;
-         LocalScale define o tamanho do splitscreen visual; LocalEulerAngels define a angulação da
+        /*splitter ï¿½ criado para ser a splitscreen visual. LocalPosition define o eixo que serï¿½ gerado;
+         LocalScale define o tamanho do splitscreen visual; LocalEulerAngels define a angulaï¿½ï¿½o da
         splitscreen*/
         splitter = GameObject.CreatePrimitive(PrimitiveType.Quad);
         splitter.transform.parent = splitter.transform;
@@ -47,16 +47,20 @@ public class SplitScreenDynamic : MonoBehaviour
         split.transform.localScale = new Vector3();
         split.transform.localEulerAngles = Vector3.zero;
 
-        //Criar material para a criação da split screen
+        //Criar material para a criaï¿½ï¿½o da split screen
     }
 
-    //LateUpdate é util para a CameraFollow
+    //LateUpdate ï¿½ util para a CameraFollow
     void LateUpdate()
     {
-        //Criar os calculos para a rotação da splitscreen
+        //Criar os calculos para a rotaï¿½ï¿½o da splitscreen
+        
+
+
+
         //Rotacionar a splitscreen
         //Gera o valor do meio entre os 2 jogadores
-        //Criar calculos para a splitscreen pegar o meio dependendo da distância dos jogadores
+        //Criar calculos para a splitscreen pegar o meio dependendo da distï¿½ncia dos jogadores
 
         //Ativar a splitscreen
         //Desativar a splitscreen
