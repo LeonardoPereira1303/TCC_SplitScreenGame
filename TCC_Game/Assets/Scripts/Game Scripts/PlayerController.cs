@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
 
     [SerializeField] private float playerSpeed = 2.0f;
-    [SerializeField] private float dashSpeed = 10.0f;
-    [SerializeField] private float dashDuration = 0.2f;
+    [SerializeField] private float dashSpeed = 20.0f;
+    [SerializeField] private float dashDuration = 2.0f;
     private bool isDashing = false;
 
     private void Start()
@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         while (Time.time < startTime + dashDuration)
         {
             controller.Move(dashDirection * dashSpeed * Time.deltaTime);
+            Debug.Log("Dash ativado");
             yield return null;
         }
 
