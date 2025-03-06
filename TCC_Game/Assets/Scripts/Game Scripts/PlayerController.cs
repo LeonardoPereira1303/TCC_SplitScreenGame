@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
-    [SerializeField] private float playerSpeed = 2.0f;
+    [Header("Dash")]
+    [SerializeField] private float playerSpeed;
     [SerializeField] private float dashSpeed = 20.0f;
     [SerializeField] private float dashDuration = 2.0f;
     private bool isDashing = false;

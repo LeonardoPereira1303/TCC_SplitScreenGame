@@ -107,6 +107,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 10a3240f-79a2-430a-a90f-76ca16ff3d7b
     m_ActionName: Player/UseItem[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3ccc8df9-c1cf-4f8f-b212-66299039a99f
+    m_ActionName: Menu/Escape[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 959a22e8-9998-48e0-bc70-da189baffa57
+    m_ActionName: Menu/Confirm[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 55531fff-b5c6-4c6f-bf57-7af9a38a2f87
+    m_ActionName: Menu/Cancel[/Keyboard/backspace]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -125,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 100
-  dashSpeed: 10
+  dashSpeed: 200
   dashDuration: 0.2
 --- !u!33 &4392593580898368995
 MeshFilter:
