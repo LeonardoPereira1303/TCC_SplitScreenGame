@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
 
     [SerializeField] private float playerSpeed = 2.0f;
-    private Vector2 dash = Vector2.zero;
+   
     private Vector2 movementInput = Vector2.zero;
 
     private void Start()
@@ -19,15 +20,19 @@ public class PlayerController : MonoBehaviour
         controller = gameObject.GetComponent<CharacterController>();
     }
 
+    /*void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }*/
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
     }
 
-    public void OnDash(InputAction.CallbackContext context)
+    /*public void OnDash(InputAction.CallbackContext context)
     {
-        dash = context.ReadValue<Vector2>();
-    }
+        dashInput = context.action.triggered;
+    }*/
 
     void Update()
     {
@@ -39,5 +44,12 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
         controller.Move(move * Time.deltaTime * playerSpeed);
+
+        /*if(dashInput && canDash){
+            Dash();
+        }*/
     }
+
+
+    
 }
