@@ -31,12 +31,13 @@ public class SplitScreenDynamic : MonoBehaviour
 
         /*c2 � dado como prefer�ncia para ser renderizado antes do c1*/
         c2.depth = c1.depth -1;
+        c2.cullingMask = ~(1 << LayerMask.NameToLayer("TransparentFX"));
 
         /*splitter � criado para ser a splitscreen visual. LocalPosition define o eixo que ser� gerado;
          LocalScale define o tamanho do splitscreen visual; LocalEulerAngels define a angula��o da
         splitscreen*/
         splitter = GameObject.CreatePrimitive(PrimitiveType.Quad);
-        splitter.transform.parent = splitter.transform;
+        splitter.transform.parent = gameObject.transform;
         splitter.transform.localPosition = Vector3.forward;
         splitter.transform.localScale = new Vector3(2, splitWidth / 10, 1);
         splitter.transform.localEulerAngles = Vector3.zero;
@@ -44,8 +45,8 @@ public class SplitScreenDynamic : MonoBehaviour
 
         split = GameObject.CreatePrimitive(PrimitiveType.Quad);
         split.transform.parent = splitter.transform;
-        split.transform.localPosition = new Vector3 ();
-        split.transform.localScale = new Vector3();
+        split.transform.localPosition = new Vector3 (0, -(1 / (splitWidth / 10)), 0.0001f);
+        split.transform.localScale = new Vector3(1, 2 / (splitWidth / 10), 1);
         split.transform.localEulerAngles = Vector3.zero;
 
         /*Criamos um material temporário onde o splitter recebe esse material para a renderização
@@ -111,7 +112,7 @@ public class SplitScreenDynamic : MonoBehaviour
                 cam2.transform.position = Vector3.Lerp(cam2.transform.position,midPoint2 + 
                     new Vector3(0,6,-5),Time.deltaTime*5);
                 Quaternion newRot2 = Quaternion.LookRotation(midPoint2 - cam2.transform.position);
-                cam2.transform.rotation = Quaternion.Lerp(cam2.transform.rotation, newRot2, Time.deltaTime);
+                cam2.transform.rotation = Quaternion.Lerp(cam2.transform.rotation, newRot2, Time.deltaTime * 5);
             }
         }
         else
@@ -125,9 +126,9 @@ public class SplitScreenDynamic : MonoBehaviour
         }
 
         cam1.transform.position = Vector3.Lerp(cam1.transform.position,midPoint + 
-            new Vector3(0,6,-5), Time.deltaTime);
+            new Vector3(0,6,-5), Time.deltaTime*5);
         Quaternion newRot = Quaternion.LookRotation(midPoint - cam1.transform.position);
-        cam1.transform.rotation = Quaternion.Lerp(cam1.transform.rotation, newRot, Time.deltaTime);
+        cam1.transform.rotation = Quaternion.Lerp(cam1.transform.rotation, newRot, Time.deltaTime*5);
         
 
     }
