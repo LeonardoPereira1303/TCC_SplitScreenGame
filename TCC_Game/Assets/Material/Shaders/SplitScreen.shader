@@ -1,4 +1,4 @@
-Shader "Mask/SplitScreenMask" {
+Shader "Mask/SplitScreen" {
 	//Simple depthmask shader 
 	SubShader {
 	    Tags {Queue = Background}

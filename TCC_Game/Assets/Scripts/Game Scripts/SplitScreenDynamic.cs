@@ -56,7 +56,7 @@ public class SplitScreenDynamic : MonoBehaviour
         splitter.GetComponent<Renderer>().material = materialTemp;
         splitter.GetComponent<Renderer>().sortingOrder = 2;
         splitter.layer = LayerMask.NameToLayer("TransparentFX");
-        Material materialTemp2 = new Material(Shader.Find("Mask/SplitScreenMask"));
+        Material materialTemp2 = new Material(Shader.Find("Mask/SplitScreen"));
         split.GetComponent<Renderer>().material = materialTemp2;
         split.layer = LayerMask.NameToLayer("TransparentFX");
     }
@@ -96,7 +96,7 @@ public class SplitScreenDynamic : MonoBehaviour
             offset2.x = Mathf.Clamp(offset.x, -splitDistance/2, splitDistance/2);
             offset2.y = Mathf.Clamp(offset.y, -splitDistance/2, splitDistance/2);
             offset2.z = Mathf.Clamp(offset.z, -splitDistance/2, splitDistance/2);
-            Vector3 midPoint2 = player2.position - offset;
+            Vector3 midPoint2 = player2.position - offset2;
 
             //Ativar a splitscreen
             if (splitter.activeSelf == false)
@@ -110,9 +110,9 @@ public class SplitScreenDynamic : MonoBehaviour
             else
             {
                 cam2.transform.position = Vector3.Lerp(cam2.transform.position,midPoint2 + 
-                    new Vector3(0,6,-5),Time.deltaTime*5);
+                    new Vector3(0,40,-40),Time.deltaTime*5);
                 Quaternion newRot2 = Quaternion.LookRotation(midPoint2 - cam2.transform.position);
-                cam2.transform.rotation = Quaternion.Lerp(cam2.transform.rotation, newRot2, Time.deltaTime * 5);
+                cam2.transform.rotation = Quaternion.Lerp(cam2.transform.rotation, newRot2, Time.deltaTime*5);
             }
         }
         else
@@ -126,7 +126,7 @@ public class SplitScreenDynamic : MonoBehaviour
         }
 
         cam1.transform.position = Vector3.Lerp(cam1.transform.position,midPoint + 
-            new Vector3(0,6,-5), Time.deltaTime*5);
+            new Vector3(0,40,-40), Time.deltaTime*5);
         Quaternion newRot = Quaternion.LookRotation(midPoint - cam1.transform.position);
         cam1.transform.rotation = Quaternion.Lerp(cam1.transform.rotation, newRot, Time.deltaTime*5);
         
