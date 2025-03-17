@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-
     private CharacterController controller;
 
     private Vector2 movementInput = Vector2.zero;
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Dash());                 
         }
     }
-
 
     private IEnumerator Dash()
     {

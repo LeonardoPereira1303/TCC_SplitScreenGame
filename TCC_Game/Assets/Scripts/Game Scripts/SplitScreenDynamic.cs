@@ -12,7 +12,7 @@ public class SplitScreenDynamic : MonoBehaviour
 
     [Header("SplitScreen Properties")]
     public float splitDistance = 5f;
-    public Color splitColor;
+    public Color splitterColor;
     public float splitterWidth;
 
     [Header("Cameras Properties")]
@@ -51,7 +51,7 @@ public class SplitScreenDynamic : MonoBehaviour
         /*Criamos um material temporário onde o splitter recebe esse material para a renderização
          e coloração da splitscreen visual*/
         Material materialTemp = new Material(Shader.Find ("Unlit/Color"));
-        materialTemp.color = splitColor;
+        materialTemp.color = splitterColor;
         splitter.GetComponent<Renderer>().material = materialTemp;
         splitter.GetComponent<Renderer>().sortingOrder = 2;
         splitter.layer = LayerMask.NameToLayer("TransparentFX");

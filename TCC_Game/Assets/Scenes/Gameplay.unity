@@ -248,7 +248,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe8fff555ef368b40b828fc1543b5641, type: 3}
   m_Name: 
@@ -256,7 +256,7 @@ MonoBehaviour:
   player1: {fileID: 7665078730137047970}
   player2: {fileID: 1266164228}
   splitDistance: 5
-  splitColor: {r: 0, g: 0, b: 0, a: 0}
+  splitterColor: {r: 0, g: 0, b: 0, a: 0}
   splitterWidth: 0.1
 --- !u!1 &410087039
 GameObject:
