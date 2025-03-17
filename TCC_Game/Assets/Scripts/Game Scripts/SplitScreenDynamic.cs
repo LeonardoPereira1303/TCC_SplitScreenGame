@@ -6,7 +6,6 @@ using UnityEngine.Rendering;
 
 public class SplitScreenDynamic : MonoBehaviour
 {
-
     [Header("Players Properties")]
     public Transform player1, player2;
     //public PlayerInput player1_Input, player2_Input;
@@ -14,7 +13,7 @@ public class SplitScreenDynamic : MonoBehaviour
     [Header("SplitScreen Properties")]
     public float splitDistance = 5f;
     public Color splitColor;
-    public float splitWidth;
+    public float splitterWidth;
 
     [Header("Cameras Properties")]
     private GameObject cam1, cam2;
@@ -39,14 +38,14 @@ public class SplitScreenDynamic : MonoBehaviour
         splitter = GameObject.CreatePrimitive(PrimitiveType.Quad);
         splitter.transform.parent = gameObject.transform;
         splitter.transform.localPosition = Vector3.forward;
-        splitter.transform.localScale = new Vector3(2, splitWidth / 10, 1);
+        splitter.transform.localScale = new Vector3(2, splitterWidth / 10, 1);
         splitter.transform.localEulerAngles = Vector3.zero;
         splitter.SetActive(false);
 
         split = GameObject.CreatePrimitive(PrimitiveType.Quad);
         split.transform.parent = splitter.transform;
-        split.transform.localPosition = new Vector3 (0, -(1 / (splitWidth / 10)), 0.0001f);
-        split.transform.localScale = new Vector3(1, 2 / (splitWidth / 10), 1);
+        split.transform.localPosition = new Vector3 (0, -(1 / (splitterWidth / 10)), 0.0001f);
+        split.transform.localScale = new Vector3(1, 2 / (splitterWidth / 10), 1);
         split.transform.localEulerAngles = Vector3.zero;
 
         /*Criamos um material temporário onde o splitter recebe esse material para a renderização
@@ -93,19 +92,20 @@ public class SplitScreenDynamic : MonoBehaviour
             midPoint = player1.position + offset;
 
             Vector3 offset2 = midPoint - player2.position;
-            offset2.x = Mathf.Clamp(offset.x, -splitDistance/2, splitDistance/2);
-            offset2.y = Mathf.Clamp(offset.y, -splitDistance/2, splitDistance/2);
-            offset2.z = Mathf.Clamp(offset.z, -splitDistance/2, splitDistance/2);
+            offset2.x = Mathf.Clamp(offset2.x, -splitDistance/2, splitDistance/2);
+            offset2.y = Mathf.Clamp(offset2.y, -splitDistance/2, splitDistance/2);
+            offset2.z = Mathf.Clamp(offset2.z, -splitDistance/2, splitDistance/2);
             Vector3 midPoint2 = player2.position - offset2;
 
             //Ativar a splitscreen
-            if (splitter.activeSelf == false)
+            if (!splitter.activeSelf)
             {
                 splitter.SetActive(true);
-                cam2.SetActive(true);
 
                 cam2.transform.position = cam1.transform.position;
                 cam2.transform.rotation = cam1.transform.rotation;
+
+                cam2.SetActive(true);
             }
             else
             {
