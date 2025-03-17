@@ -13,6 +13,11 @@ public abstract class Interactable : MonoBehaviour
 
     public Transform Slot => slot;
 
+    protected virtual void Awake()
+    {
+
+    }
+
     void CheckSlot()
     {
         if (Slot == null)
