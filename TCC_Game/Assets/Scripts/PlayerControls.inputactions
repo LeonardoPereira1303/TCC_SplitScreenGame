@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GetItem",
+                    "name": "PickUp",
                     "type": "Button",
                     "id": "7c4f9465-4676-43d6-bedd-404563dca3f8",
                     "expectedControlType": "Button",
@@ -125,7 +125,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "GetItem",
+                    "action": "PickUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -136,7 +136,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "GetItem",
+                    "action": "PickUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,11 +15,20 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
-    [Header("Dash")]
+    [Header("Player Paramters")]
+    [SerializeField] private Transform slot;
+    [SerializeField] private Rigidbody playerRB;
+
+    [Header("Movement Parameters")]
     [SerializeField] private float playerSpeed;
+
+    [Header("Dash Parameters")]
     [SerializeField] private float dashSpeed = 20.0f;
     [SerializeField] private float dashDuration = 2.0f;
     private bool isDashing = false;
+
+    private InteractableController _interactableController;
+    private IPickable _currentPickable;
 
     private void Start()
     {
@@ -37,6 +47,50 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Dash());                 
         }
+    }
+
+    public void OnPickUp(InputAction.CallbackContext context)
+    {
+        var interactable = _interactableController.CurrentInteractable;
+
+        if(_currentPickable == null)
+        {
+            _currentPickable = interactable as IPickable;
+
+            if(_currentPickable != null)
+            {
+                _currentPickable.PickUpItems();
+                _interactableController.Remove(_currentPickable as Interactable);
+                _currentPickable.gameObject.transform.SetPositionAndRotation(
+                    slot.transform.position, Quaternion.identity);
+                _currentPickable.gameObject.transform.SetParent(slot);
+                return;
+            }
+
+            _currentPickable = interactable?.TryToPickUpFromSlot(_currentPickable);
+            if (_currentPickable != null)
+            {
+                //Animação + Sound
+            }
+
+            _currentPickable?.gameObject.transform.SetPositionAndRotation(slot.position,
+                Quaternion.identity);
+            _currentPickable?.gameObject.transform.SetParent(slot);
+            return;
+        }
+
+        if(interactable == null || interactable is IPickable)
+        {
+            _currentPickable.DropItems();
+            _currentPickable = null;
+            return;
+        }
+
+        bool dropSuccess = interactable.TryToDropIntoSlot(_currentPickable);
+        if(!dropSuccess) return;
+
+        _currentPickable = null;
+
     }
 
     private IEnumerator Dash()
