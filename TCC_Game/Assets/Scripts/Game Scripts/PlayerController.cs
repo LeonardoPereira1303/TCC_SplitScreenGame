@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    private IPickable pickDropScript;
     private CharacterController controller;
 
     private Vector2 movementInput = Vector2.zero;
