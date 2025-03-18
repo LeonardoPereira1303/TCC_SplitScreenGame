@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Android.LowLevel;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
