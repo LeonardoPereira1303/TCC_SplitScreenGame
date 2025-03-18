@@ -44,7 +44,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &538125360498930942
 MonoBehaviour:
@@ -123,8 +123,8 @@ Transform:
   m_GameObject: {fileID: 2919506272855201034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.29999924, y: 3.5299988, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 538125361485599466}
   m_RootOrder: 0
@@ -241,8 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slot: {fileID: 538125360498930941}
-  playerRB: {fileID: 0}
-  playerSpeed: 100
+  playerSpeed: 50
   dashSpeed: 200
   dashDuration: 0.2
   _interactableController: {fileID: 538125360498930942}
