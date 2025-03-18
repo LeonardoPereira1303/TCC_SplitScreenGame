@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Paramters")]
     [SerializeField] private Transform slot;
-    [SerializeField] private Rigidbody playerRB;
 
     [Header("Movement Parameters")]
     [SerializeField] private float playerSpeed;
