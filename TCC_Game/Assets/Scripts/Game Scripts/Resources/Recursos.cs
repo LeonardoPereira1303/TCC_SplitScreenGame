@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
-public class Recursos : Interactable, IPickable
+public class Recursos : Interactable
 {
     [SerializeField] private RecursosData data;
     private Rigidbody rb;
@@ -41,13 +41,13 @@ public class Recursos : Interactable, IPickable
         }
     }
 
-    public void PickUpItems()
+    public override void PickUpItems()
     {
         rb.isKinematic = true;
         cl.enabled = false;
     }
 
-    public void DropItems()
+    public override void DropItems()
     {
         gameObject.transform.SetParent(null);
         rb.isKinematic = false;

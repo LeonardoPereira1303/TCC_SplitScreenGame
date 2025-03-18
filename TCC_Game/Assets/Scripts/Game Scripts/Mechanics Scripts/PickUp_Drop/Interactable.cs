@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public abstract class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour, IPickable
 {
     [SerializeField] protected Transform slot;
 
@@ -38,4 +38,8 @@ public abstract class Interactable : MonoBehaviour
 
     public abstract bool TryToDropIntoSlot(IPickable pickableToDrop);
     [CanBeNull] public abstract IPickable TryToPickUpFromSlot(IPickable playerHoldPickable);
+
+    public abstract void PickUpItems();
+
+    public abstract void DropItems();
 }

@@ -16,7 +16,7 @@ public class InteractableController : MonoBehaviour
     }
 
     [CanBeNull]
-    public Interactable CurrentInteractable { get; private set; }
+    public Interactable CurrentInteractable => TryGetClosest();
 
     private void OnTriggerEnter(Collider other)
     {
@@ -41,15 +41,6 @@ public class InteractableController : MonoBehaviour
     public void Remove(Interactable interactable)
     {
         _interactables.Remove(interactable);
-    }
-
-    private void FixedUpdate()
-    {
-        Interactable closest = TryGetClosest();
-
-        if (closest == CurrentInteractable) return;
-
-        CurrentInteractable = closest;
     }
 
     private Interactable TryGetClosest()

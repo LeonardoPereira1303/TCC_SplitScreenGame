@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashDuration = 2.0f;
     private bool isDashing = false;
 
+    [SerializeField]
     private InteractableController _interactableController;
     private IPickable _currentPickable;
 
@@ -54,7 +55,18 @@ public class PlayerController : MonoBehaviour
 
     public void OnPickUp(InputAction.CallbackContext context)
     {
-        var interactable = _interactableController.CurrentInteractable;
+        if(context.performed)
+        {
+            PerformPickUp();
+        }
+    }
+
+    private void PerformPickUp()
+    {
+        Interactable interactable = _interactableController.CurrentInteractable;
+
+        if(interactable == null)
+            return;
 
         if(_currentPickable == null)
         {
@@ -73,7 +85,7 @@ public class PlayerController : MonoBehaviour
             _currentPickable = interactable?.TryToPickUpFromSlot(_currentPickable);
             if (_currentPickable != null)
             {
-                //Animação + Sound
+                //Animaï¿½ï¿½o + Sound
             }
 
             _currentPickable?.gameObject.transform.SetPositionAndRotation(slot.position,
@@ -93,7 +105,6 @@ public class PlayerController : MonoBehaviour
         if(!dropSuccess) return;
 
         _currentPickable = null;
-
     }
 
     private IEnumerator Dash()

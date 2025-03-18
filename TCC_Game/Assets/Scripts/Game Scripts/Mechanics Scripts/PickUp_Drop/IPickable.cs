@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public interface IPickable
 {
-   GameObject gameObject { get; }
+    GameObject gameObject { get; }
     public void PickUpItems();
     public void DropItems();
 }
