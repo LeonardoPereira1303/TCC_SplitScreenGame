@@ -27,7 +27,9 @@ public class PlayerController : MonoBehaviour
     [Header("Dash Parameters")]
     [SerializeField] private float dashSpeed = 20.0f;
     [SerializeField] private float dashDuration = 2.0f;
+    [SerializeField] private float dashCooldown = 3.0f;
     private bool isDashing = false;
+    private float lastDashTime = -Mathf.Infinity;
 
     [SerializeField]
     private InteractableController _interactableController;
@@ -46,9 +48,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && !isDashing)
+        if (context.started && !isDashing && Time.time >= lastDashTime + dashCooldown)
         {
-            StartCoroutine(Dash());                 
+            StartCoroutine(Dash());
+            lastDashTime = Time.time;
         }
     }
 
