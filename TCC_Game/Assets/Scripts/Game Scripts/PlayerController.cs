@@ -44,6 +44,11 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
+        if(!isDashing)
+        {
+            // Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
+            // controller.Move(move * playerSpeed * Time.deltaTime);
+        }
     }
 
     public void OnDash(InputAction.CallbackContext context)
@@ -138,9 +143,11 @@ public class PlayerController : MonoBehaviour
         if (!isDashing)
         {
             Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
-            controller.Move(move * playerSpeed * Time.deltaTime);
+            transform.position += move * playerSpeed * Time.deltaTime;
+            // Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
+            // controller.Move(move * playerSpeed * Time.deltaTime);
+            //rig.velocity = move * playerSpeed * Time.deltaTime;
         }
 
     }
-
 }

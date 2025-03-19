@@ -1,38 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    public Transform destinationPad; // Ponto de destino do teleporte
-    public float teleportHeightOffset = 1.0f; // Para evitar sobreposição de colisores
+    [SerializeField]
+    private Portal destinationPortal;
+    [SerializeField]
+    private Transform portalTrans => transform; // Ponto de destino do teleporte
+    public float teleportHeightOffset = 1.0f; // Para evitar sobreposiï¿½ï¿½o de colisores
     public float teleportOffset = 2.0f; // Para evitar que o jogador fique dentro do novo portal
-    public float cooldownTime = 1.5f; // Tempo de espera para evitar múltiplos teleportes rápidos
 
-    private HashSet<Transform> cooldownObjects = new HashSet<Transform>();
+    private GameObject playerTarget; //referÃªncia do player que estÃ¡ sendo enviado pelo teleporte
+
+    public void NotifyTeleportingPlayer(GameObject teleportingPlayer)
+    {
+        playerTarget = teleportingPlayer;
+        Debug.Log("New player target" + playerTarget.name +  " in " + gameObject.name);
+    }
+
+    public Vector3 GetDestinationPosition()
+    {
+        return portalTrans.position + (portalTrans.forward * teleportOffset) + new Vector3(0, teleportHeightOffset, 0);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (destinationPad == null) return; // Se não tem destino, não faz nada
-        if (cooldownObjects.Contains(other.transform)) return; // Se o objeto está em cooldown, ignora
+        if(playerTarget == other.gameObject)
+        {
+            Debug.Log(gameObject.name + " " + playerTarget.gameObject.name);
+            return;
+        }
+            
 
-        // Coloca o objeto em cooldown
-        cooldownObjects.Add(other.transform);
-
-        // Calcula a nova posição (levemente afastada para evitar bug)
-        Vector3 newPosition = destinationPad.position + (destinationPad.forward * teleportOffset) + new Vector3(0, teleportHeightOffset, 0);
-
-        // Teleporta o objeto
-        other.transform.position = newPosition;
-        Debug.Log($"{other.name} teleportado para {destinationPad.name}");
-
-        // Inicia cooldown para esse objeto
-        StartCoroutine(RemoveCooldown(other.transform));
+        if(other.tag == "Player")
+        {
+            destinationPortal.NotifyTeleportingPlayer(other.gameObject);
+            other.gameObject.transform.position = destinationPortal.GetDestinationPosition();
+        }
     }
 
-    private IEnumerator RemoveCooldown(Transform obj)
+    private void OnTriggerExit(Collider other)
     {
-        yield return new WaitForSeconds(cooldownTime);
-        cooldownObjects.Remove(obj); // Remove do cooldown após o tempo
+        playerTarget = null;
     }
 }

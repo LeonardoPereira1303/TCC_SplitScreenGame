@@ -43,11 +43,11 @@ namespace Scene_Teleportation_Kit.Scripts.teleport
         }
 
         private void Teleport(Teleportable teleportable) {
-            SpawnPoint spawnPoint = FindSpawnPoint(destSpawnName);
-            if (spawnPoint != null) {
-                teleportable.GetComponent<PlayerMovement>().TeleportTo(spawnPoint.transform);
-            }
-            teleportable.canTeleport = true;
+            // SpawnPoint spawnPoint = FindSpawnPoint(destSpawnName);
+            // if (spawnPoint != null) {
+            //     teleportable.GetComponent<PlayerController>().TeleportTo(spawnPoint.transform);
+            // }
+            // teleportable.canTeleport = true;
         }
 
         private SpawnPoint FindSpawnPoint(string spawnName) {
