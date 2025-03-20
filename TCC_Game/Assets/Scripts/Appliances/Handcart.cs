@@ -50,7 +50,7 @@ public class Handcart : Interactable, IPickable
             }
             // UpdateIconsUI();
             
-            if (CheckSoupIngredients(recursos))
+            if (CheckHandcartResources(recursos))
             {
                 EnableSoup(recursos[0]);
             }
@@ -68,7 +68,7 @@ public class Handcart : Interactable, IPickable
         /// <summary>
         /// Check for exactly 3 equals ingredients, being onions, tomatoes or mushrooms.
         /// </summary>
-        public static bool CheckSoupIngredients(IReadOnlyList<Recursos> recursos)
+        public static bool CheckHandcartResources(IReadOnlyList<Recursos> recursos)
         {
             if (recursos == null || recursos.Count != 3)
             {
@@ -140,13 +140,13 @@ public class Handcart : Interactable, IPickable
             //we can drop soup from plate to plate AND from plate to CookingPot (and vice-versa)
             switch (pickableToDrop)
             {
-                case CookingPot cookingPot:
-                    if (cookingPot.IsCookFinished &&
-                        cookingPot.IsBurned == false &&
-                        CheckSoupIngredients(cookingPot.Ingredients))
+                case BatteryCharger batteryCharger:
+                    if (batteryCharger.IsChargeFinished &&
+                        batteryCharger.IsBurned == false &&
+                        CheckHandcartResources(batteryCharger.Recursos))
                     {
-                        AddIngredients(cookingPot.Ingredients);
-                        cookingPot.EmptyPan();
+                        AddIngredients(batteryCharger.Recursos);
+                        batteryCharger.EmptyCharger();
                         return false;
                     }
                     break;
@@ -175,7 +175,7 @@ public class Handcart : Interactable, IPickable
             switch (playerHoldPickable)
             {
                 // we just pick the soup ingredients, not the CookingPot itself
-                case CookingPot cookingPot:
+                case BatteryCharger batteryCharger:
                     Debug.Log("[Plate] Trying to pick from a plate with a CookingPot", this);
                     break;
                 case Recursos recursos:

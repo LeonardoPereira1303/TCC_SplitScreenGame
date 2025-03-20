@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CounterTop : Interactable
+public class HolograficTable : Interactable
 {
-    public override void DropItems()
-    {
-    }
+    public override void DropItems() {}
 
-    public override void PickUpItems()
-    {
-    }
+    public override void PickUpItems() {}
 
     public override bool TryToDropIntoSlot(IPickable pickableToDrop)
         {
@@ -18,7 +14,7 @@ public class CounterTop : Interactable
 
             return CurrentPickable switch
             {
-                CookingPot cookingPot => cookingPot.TryToDropIntoSlot(pickableToDrop),
+                BatteryCharger batteryCharger => batteryCharger.TryToDropIntoSlot(pickableToDrop),
                 Recursos recursos => recursos.TryToDropIntoSlot(pickableToDrop),
                 Handcart handcart => handcart.TryToDropIntoSlot(pickableToDrop),
                 _ => false
