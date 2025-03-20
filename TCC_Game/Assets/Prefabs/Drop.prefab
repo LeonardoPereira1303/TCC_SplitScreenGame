@@ -143,5 +143,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slot: {fileID: 4278514714728646060}
-  itemPrefab: {fileID: 3925244393263939572, guid: 4f6ef5d2de254954a8bd37a441139560,
+  itemPrefab: {fileID: 3925244393263939572, guid: 0033cdcb1c286034b8d37e345280d433,
     type: 3}
