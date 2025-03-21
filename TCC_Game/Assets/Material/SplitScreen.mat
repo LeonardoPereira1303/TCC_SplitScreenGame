@@ -98,6 +98,7 @@ Material:
     - PixelSnap: 0
     - _AlphaClip: 0
     - _Blend: 0
+    - _BlendWidth: 0.02
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -119,6 +120,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SplitLine: 0.5
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 1

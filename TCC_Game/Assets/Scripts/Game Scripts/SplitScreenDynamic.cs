@@ -87,26 +87,26 @@ public class SplitScreenDynamic : MonoBehaviour
         if(distance > splitDistance)
         {
             Vector3 offset = midPoint - player1.position;
-            offset.x = Mathf.Clamp(offset.x, -splitDistance/2, splitDistance/2);
-            offset.y = Mathf.Clamp(offset.y, -splitDistance/2, splitDistance/2);
-            offset.z = Mathf.Clamp(offset.z, -splitDistance/2, splitDistance/2);
+            offset.x = Mathf.Clamp(offset.x, -splitDistance / 2, splitDistance / 2);
+            offset.y = Mathf.Clamp(offset.y, -splitDistance / 2, splitDistance / 2);
+            offset.z = Mathf.Clamp(offset.z, -splitDistance / 2, splitDistance / 2);
             midPoint = player1.position + offset;
 
             Vector3 offset2 = midPoint - player2.position;
-            offset2.x = Mathf.Clamp(offset.x, -splitDistance/2, splitDistance/2);
-            offset2.y = Mathf.Clamp(offset.y, -splitDistance/2, splitDistance/2);
-            offset2.z = Mathf.Clamp(offset.z, -splitDistance/2, splitDistance/2);
+            offset2.x = Mathf.Clamp(offset.x, -splitDistance / 2, splitDistance / 2);
+            offset2.y = Mathf.Clamp(offset.y, -splitDistance / 2, splitDistance / 2);
+            offset2.z = Mathf.Clamp(offset.z, -splitDistance / 2, splitDistance / 2);
             Vector3 midPoint2 = player2.position - offset;
+
 
             //Ativar a splitscreen
             if (!splitter.activeSelf)
             {
                 splitter.SetActive(true);
+                cam2.SetActive(true);
 
                 cam2.transform.position = cam1.transform.position;
                 cam2.transform.rotation = cam1.transform.rotation;
-
-                cam2.SetActive(true);
             }
             else
             {
