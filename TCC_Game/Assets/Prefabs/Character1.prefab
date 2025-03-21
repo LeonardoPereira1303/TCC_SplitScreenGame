@@ -109,12 +109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e85d71b61de98b488aaf3a79428a2de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rig: {fileID: 1518892506610234414}
   slot: {fileID: 538125360498930941}
   playerSpeed: 50
   dashSpeed: 200
   dashDuration: 0.2
-  dashCooldown: 3
+  dashCooldown: 1
   _interactableController: {fileID: 538125360498930942}
 --- !u!136 &8615251553588016311
 CapsuleCollider:

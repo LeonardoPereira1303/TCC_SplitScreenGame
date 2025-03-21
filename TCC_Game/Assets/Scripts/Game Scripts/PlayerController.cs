@@ -31,8 +31,7 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private float lastDashTime = -Mathf.Infinity;
 
-    [SerializeField]
-    private InteractableController _interactableController;
+    [SerializeField] private InteractableController _interactableController;
     private IPickable _currentPickable;
 
     private void Start()
@@ -134,6 +133,7 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
+        //Evita que se movimente e use dash ao mesmo tempo
         if (!isDashing)
         {
             Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);

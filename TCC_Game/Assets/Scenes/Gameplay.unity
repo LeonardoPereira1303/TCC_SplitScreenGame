@@ -3904,7 +3904,8 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 3455357500737781402}
+  m_PlayerPrefab: {fileID: 538125361485599465, guid: 3dca38bd02a81dc4ea8a2f349ea69f62,
+    type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -4070,6 +4071,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 792931778051189755, guid: 3dca38bd02a81dc4ea8a2f349ea69f62,
+        type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard
       objectReference: {fileID: 0}
     - target: {fileID: 2919506272855201034, guid: 3dca38bd02a81dc4ea8a2f349ea69f62,
         type: 3}
@@ -5576,12 +5582,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dca38bd02a81dc4ea8a2f349ea69f62, type: 3}
---- !u!1 &3455357500737781402 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2919506272855201034, guid: 3dca38bd02a81dc4ea8a2f349ea69f62,
-    type: 3}
-  m_PrefabInstance: {fileID: 538125361796082576}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4004186031912320681
 PrefabInstance:
   m_ObjectHideFlags: 0
