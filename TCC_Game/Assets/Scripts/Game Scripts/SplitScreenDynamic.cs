@@ -11,7 +11,7 @@ public class SplitScreenDynamic : MonoBehaviour
     //public PlayerInput player1_Input, player2_Input;
 
     [Header("SplitScreen Properties")]
-    public float splitDistance = 5f;
+    public float splitDistance = 20f;
     public Color splitterColor;
     public float splitterWidth;
 
@@ -38,10 +38,11 @@ public class SplitScreenDynamic : MonoBehaviour
         splitter = GameObject.CreatePrimitive(PrimitiveType.Quad);
         splitter.transform.parent = gameObject.transform;
         splitter.transform.localPosition = Vector3.forward;
-        splitter.transform.localScale = new Vector3(2, splitterWidth / 10, 1);
+        splitter.transform.localScale = new Vector3(5, splitterWidth / 10, 1);
         splitter.transform.localEulerAngles = Vector3.zero;
         splitter.SetActive(false);
 
+        //Cria um quad para renderizar a segunda camera
         split = GameObject.CreatePrimitive(PrimitiveType.Quad);
         split.transform.parent = splitter.transform;
         split.transform.localPosition = new Vector3 (0, -(1 / (splitterWidth / 10)), 0.0001f);

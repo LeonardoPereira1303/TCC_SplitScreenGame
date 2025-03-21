@@ -1,7 +1,10 @@
 Shader "Mask/SplitScreen" {
 	//Simple depthmask shader 
 	SubShader {
-	    Tags {Queue = Background}
-	    Pass {ColorMask 0}
+	    Tags {"Queue" = "Geometry+10"}
+		ColorMask 0
+		ZWrite On
+
+	    Pass {}
 	}
 }
