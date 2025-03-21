@@ -93,10 +93,10 @@ public class SplitScreenDynamic : MonoBehaviour
             midPoint = player1.position + offset;
 
             Vector3 offset2 = midPoint - player2.position;
-            offset2.x = Mathf.Clamp(offset2.x, -splitDistance/2, splitDistance/2);
-            offset2.y = Mathf.Clamp(offset2.y, -splitDistance/2, splitDistance/2);
-            offset2.z = Mathf.Clamp(offset2.z, -splitDistance/2, splitDistance/2);
-            Vector3 midPoint2 = player2.position - offset2;
+            offset2.x = Mathf.Clamp(offset.x, -splitDistance/2, splitDistance/2);
+            offset2.y = Mathf.Clamp(offset.y, -splitDistance/2, splitDistance/2);
+            offset2.z = Mathf.Clamp(offset.z, -splitDistance/2, splitDistance/2);
+            Vector3 midPoint2 = player2.position - offset;
 
             //Ativar a splitscreen
             if (!splitter.activeSelf)
@@ -111,7 +111,7 @@ public class SplitScreenDynamic : MonoBehaviour
             else
             {
                 cam2.transform.position = Vector3.Lerp(cam2.transform.position,midPoint2 + 
-                    new Vector3(0,40,-40),Time.deltaTime*5);
+                    new Vector3(0,50,-50),Time.deltaTime*5);
                 Quaternion newRot2 = Quaternion.LookRotation(midPoint2 - cam2.transform.position);
                 cam2.transform.rotation = Quaternion.Lerp(cam2.transform.rotation, newRot2, Time.deltaTime*5);
             }
@@ -127,7 +127,7 @@ public class SplitScreenDynamic : MonoBehaviour
         }
 
         cam1.transform.position = Vector3.Lerp(cam1.transform.position,midPoint + 
-            new Vector3(0,40,-40), Time.deltaTime*5);
+            new Vector3(0, 50, -50), Time.deltaTime*5);
         Quaternion newRot = Quaternion.LookRotation(midPoint - cam1.transform.position);
         cam1.transform.rotation = Quaternion.Lerp(cam1.transform.rotation, newRot, Time.deltaTime*5);
         
